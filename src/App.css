@@ -1,38 +1,149 @@
+body {
+  background-image: url("https://avatars.mds.yandex.net/i?id=0d53b2ea64cf9cdfb7416efa6b0fd996abee773a-4576218-images-thumbs&n=13");
+  background-position: center;
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .App {
+  font-family: sans-serif;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+  position: relative;
+  font-size: 60px;
+  -webkit-text-stroke: 0.04em white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1::before {
+  /* второй слой */
+  content: attr(data-text);
+  position: absolute; /* в том же месте той же ширины */
+  left: 0;
+  right: 0;
+  -webkit-text-stroke: 0.02em black;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main {
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.animated_rainbow_1 {
+  font-size: 70px;
+  font-family: Arial Black, Gadget, sans-serif;
+  background-image: -webkit-linear-gradient(
+    left,
+    #f00,
+    #ff2b00,
+    #f50,
+    #ff8000,
+    #fa0,
+    #ffd500,
+    #ff0,
+    #d4ff00,
+    #af0,
+    #80ff00,
+    #5f0,
+    #2bff00,
+    #0f0,
+    #00ff2a,
+    #0f5,
+    #00ff80,
+    #0fa,
+    #00ffd5,
+    #0ff,
+    #00d5ff,
+    #0af,
+    #0080ff,
+    #05f,
+    #002aff,
+    #00f,
+    #2b00ff,
+    #50f,
+    #8000ff,
+    #a0f,
+    #d400ff,
+    #f0f,
+    #ff00d4,
+    #f0a,
+    #ff0080,
+    #f05,
+    #ff002b,
+    #f00
+  );
+  -webkit-animation: animatedBackground_a 5s linear infinite alternate;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #0000;
+  background-clip: text;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes animatedBackground_a {
+  0% {
+    background-position: 0 0;
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    background-position: -500px 0;
+  }
+}
+
+button {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10rem;
+  color: black;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: bolder;
+  letter-spacing: 0.15rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $color;
+    border-radius: 10rem;
+    z-index: -2;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: darken($color, 15%);
+    transition: all 0.3s;
+    border-radius: 10rem;
+    z-index: -1;
+  }
+  &:hover {
+    color: #fff;
+    &:before {
+      width: 100%;
+    }
+  }
+}
+
+@media all and (max-width: 500px) {
+  h1 {
+    font-size: 40px;
+  }
+
+  p,
+  .animated_rainbow_1 {
+    font-size: 50px;
   }
 }
